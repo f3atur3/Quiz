@@ -39,6 +39,7 @@ def quiz_view(request):
             "num_complition": post.views,
             "description": post.description,
             "title": post.title,
+            'id':post.id
         }
     }
     return render(request, "Просмотр.html",context=context)
