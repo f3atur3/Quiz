@@ -149,14 +149,14 @@
                             <th class="u-border-3 u-border-grey-90 u-table-cell">Просмотры</th>
                         </tr>
                     </thead>
-                    <tbody class="u-table-body">
+                    <tbody style="table-layout: fixed" class="u-table-body">
                         {% for quiz in quizzes %}
-                        <tr style="height: 77px;">
-                            <td class="u-border-3 u-border-black u-table-cell">{{quiz.picture}}</td>
-                            <td class="u-border-3 u-border-black u-table-cell">{{quiz.title}}</td>
-                            <td class="u-border-3 u-border-black u-table-cell">{{quiz.description}}</td>
-                            <td class="u-border-3 u-border-black u-table-cell">{{quiz.rating}}</td>
-                            <td class="u-border-3 u-border-black u-table-cell u-table-cell-10">{{quiz.num_complition}}</td>
+                        <tr style="width: 100px; height: auto">
+                            <td style="word-wrap:break-word; max-width:150px" class="u-border-3 u-border-black u-table-cell"><img style="width: 100%; height: auto" src="{% static quiz.picture %}"></td>
+                            <td style="word-wrap:break-word; max-width:150px" class="u-border-3 u-border-black u-table-cell">{{quiz.title}}</td>
+                            <td style="word-wrap:break-word; max-width:150px" class="u-border-3 u-border-black u-table-cell">{{quiz.description}}</td>
+                            <td style="word-wrap:break-word; max-width:150px" class="u-border-3 u-border-black u-table-cell">{{quiz.rating}}</td>
+                            <td style="word-wrap:break-word; max-width:150px" class="u-border-3 u-border-black u-table-cell u-table-cell-10">{{quiz.num_complition}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
