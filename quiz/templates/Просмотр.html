@@ -132,7 +132,7 @@
     <section class="u-clearfix u-gradient u-section-1" id="sec-ce8e">
         <div class="u-clearfix u-sheet u-sheet-1">
             <h2 class="u-text u-text-body-alt-color u-text-default u-text-1">{{quiz.title}}</h2>
-            <img class="u-expanded-width-xs u-image u-image-round u-radius-10 u-image-1" src={{quiz.picture}} alt="" data-image-width="5616" data-image-height="3744">
+            <img class="u-expanded-width-xs u-image u-image-round u-radius-10 u-image-1" src={% static quiz.picture %} alt="" data-image-width="5616" data-image-height="3744">
             <p class="u-text u-text-body-alt-color u-text-2">
                 {{quiz.description}}<br>
             </p>
