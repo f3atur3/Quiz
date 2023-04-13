@@ -11,9 +11,3 @@ def quiz(request):
 
 def about(request):
     return render(request, "Мы.html")
-
-def entry(request):
-    return render(request, "Вход.html")
-
-def registry(request):
-    return render(request, "Регистрация.html")
