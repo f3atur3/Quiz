@@ -23,6 +23,9 @@ class Question(models.Model):
     right_answer = models.CharField(max_length=30)
     
 class Quiz(models.Model):
+    title = models.CharField(max_length=30)
+    description = models.CharField(max_length=255)
+    q_count = models.IntegerField()
     date_of_create = models.DateField(auto_now=True)
     user_id = models.ForeignKey(User, on_delete=models.RESTRICT)
     views = models.IntegerField()
