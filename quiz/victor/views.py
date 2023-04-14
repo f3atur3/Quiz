@@ -1,22 +1,22 @@
 from django.shortcuts import get_object_or_404, render
-from default.models import Question,Quiz,QIQ
+from default.models import Quiz, QIQ
 from django.core.paginator import Paginator
 from collections import defaultdict
+from django.contrib.auth.decorators import login_required
 
 dictan=defaultdict(dict)
 
-
+@login_required(login_url='/login/')
 def question(request):
-
-    id=request.GET.get('id')
-    post=QIQ.objects.filter(quiz=id)
-    questions=[post[i].question for i in range(len(post))]
-    picture=get_object_or_404(Quiz,id=id)
+    id = request.GET.get('id')
+    post = QIQ.objects.filter(quiz=id)
+    questions = [post[i].question for i in range(len(post))]
+    picture = get_object_or_404(Quiz,id=id)
     per_page = 1
     paginator = Paginator(questions, per_page)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
-    if request.method=='POST':
+    if request.method == 'POST':
         dictan[request.user.id].update({page_number:request.POST['radiobutton']})
         print(dictan)
     context={ 'quiz':{

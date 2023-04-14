@@ -129,12 +129,12 @@
                             <th class="u-border-1 u-border-black u-table-cell">Результат</th>
                         </tr>
                     </thead>
-                    <tbody class="u-table-body">
+                    <tbody style="table-layout: fixed" class="u-table-body">
                         {% for quiz in user.complited_quiz %}
-                        <tr style="height: 75px;">
-                            <td class="u-border-1 u-border-grey-30 u-table-cell">{{quiz.title}}</td>
-                            <td class="u-border-1 u-border-grey-30 u-table-cell">{{quiz.date}}</td>
-                            <td class="u-border-1 u-border-grey-30 u-table-cell">{{quiz.result}}</td>
+                        <tr style="height: auto">
+                            <td style="word-wrap:break-word; max-width:250px" class="u-border-1 u-border-grey-30 u-table-cell">{{quiz.title}}</td>
+                            <td style="word-wrap:break-word; max-width:250px" class="u-border-1 u-border-grey-30 u-table-cell">{{quiz.date}}</td>
+                            <td style="word-wrap:break-word; max-width:250px" class="u-border-1 u-border-grey-30 u-table-cell">{{quiz.result}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

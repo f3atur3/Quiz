@@ -35,4 +35,9 @@ class Quiz(models.Model):
 class QIQ(models.Model):
     question = models.ForeignKey(Question, on_delete=models.RESTRICT)
     quiz = models.ForeignKey(Quiz, on_delete=models.RESTRICT)
-    
+
+class History(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    date = models.DateField(auto_now=True)
+    result = models.FloatField()
