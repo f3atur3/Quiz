@@ -4,12 +4,12 @@ from default.views import *
 from account.views import *
 from victor.views import question
 
+#Сопоставление ссылкам их обработчиков
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='home'),
     path('all_quiz', all_quiz),
     path('registry', registration_view),
-    # path('enter', entry),
     path('us', about),
     path('quiz', quiz_view),
     path('q', question),

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+#Класс описывает структуру отношения БД в которой храняться данные определённых вопросов.
+
 class Question(models.Model):
     
     #Класс для перечисления
@@ -21,7 +23,9 @@ class Question(models.Model):
         default=TypesAnswers.radio,
     )
     right_answer = models.CharField(max_length=30)
-    
+
+#Класс описывает структуру отношения БД в которой храняться данные определённых викторин.    
+
 class Quiz(models.Model):
     title = models.CharField(max_length=20)
     description = models.CharField(max_length=255)
@@ -32,9 +36,13 @@ class Quiz(models.Model):
     rating = models.FloatField()
     icon = models.ImageField()
 
+#Класс описывает структуру отношения БД в которой храняться данные связей вопросов и викторин. 
+
 class QIQ(models.Model):
     question = models.ForeignKey(Question, on_delete=models.RESTRICT)
     quiz = models.ForeignKey(Quiz, on_delete=models.RESTRICT)
+
+#Класс описывает структуру отношения БД в которой храняться данные истории прохождения пользователем викторин.     
 
 class History(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

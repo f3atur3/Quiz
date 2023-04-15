@@ -7,23 +7,27 @@ from victor.views import dictan
 from django.contrib.auth.decorators import login_required
 from default.models import *
 
-
+#Класс обработчика выхода из системы
 class CustomLogoutView(LogoutView):
     next_page = '/'
+    #Удаление сессионных данных для пользователя
     def dispatch(self, request, *args, **kwargs):
         dictan.pop(request.user.id, None)
         return super().dispatch(request, *args, **kwargs)
 
-
+#Класс обработчика входа в систему
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
 
+    #Праверка корректности данных в форме 
     def form_valid(self, form):
         return super().form_valid(form)
     
+    #Отправка url
     def get_success_url(self):
         return self.request.GET.get('next', '/')
-
+    
+#Обработчик регистрации пользователя
 def registration_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -35,6 +39,7 @@ def registration_view(request):
         form = RegistrationForm()
     return render(request, 'Регистрация.html', {'form': form})
 
+#Обработчик Персональной страницы пользователя
 @login_required(login_url='/login/')
 def personal_account(request):
     quizes = History.objects.filter(user=request.user)
@@ -47,6 +52,7 @@ def personal_account(request):
     }
     return render(request, 'Кабинет.html', context=context)
 
+#Обработчик Персональной страницы пользователя
 @login_required(login_url='/login/')
 def personal_history(request):
     quizes = History.objects.filter(user=request.user)
