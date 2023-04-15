@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from default.views import *
 from account.views import *
-from victor.views import question
+from victor.views import *
 
 #Сопоставление ссылкам их обработчиков
 urlpatterns = [
@@ -16,5 +16,6 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('cabinet', personal_account),
-    path('history', personal_history)
+    path('history', personal_history),
+    path('result', results, name='res')
 ]

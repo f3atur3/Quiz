@@ -5,6 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
 from victor.views import dictan
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from default.models import *
 
 #Класс обработчика выхода из системы
@@ -55,14 +56,20 @@ def personal_account(request):
 #Обработчик Персональной страницы пользователя
 @login_required(login_url='/login/')
 def personal_history(request):
-    quizes = History.objects.filter(user=request.user)
+    quizes = History.objects.filter(user=request.user.id)
+    per_page = 10
+    paginator = Paginator(quizes, per_page)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
     context = {
         'complited_quiz' : [
             {
-                'title': quizes[i].quiz.title,
-                'date': quizes[i].date,
-                'result': quizes[i].result
-            } for i in range(len(quizes))
+                'title': page_obj[i].quiz.title,
+                'date': page_obj[i].date,
+                'result': page_obj[i].result,
+                'count_page': int(paginator.num_pages),
+                'page': int(page_number)
+            } for i in range(len(page_obj))
         ]
     }
     return render(request, 'История.html', context=context)

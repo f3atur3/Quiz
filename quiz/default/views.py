@@ -5,12 +5,12 @@ from default.models import Quiz
 #Функция создаёт контекст и генерирует шаблон динамической страницы Главная
 
 def index(request):
-    posts = Quiz.objects.all().order_by('-rating')
+    posts = Quiz.objects.all().order_by('-views')
     posts=posts[:4]
     context = {
         'quiz': [ {
             'picture': posts[i].icon,
-            'rating': posts[i].rating,
+            'rating': posts[i].views,
             'id': posts[i].id,
             "description": posts[i].description,
             "title": posts[i].title,
@@ -34,7 +34,7 @@ def all_quiz(request):
     context = {
         'quizzes': [ {
             'picture': page_obj[i].icon,
-            'rating': page_obj[i].rating,
+            'rating': page_obj[i].views,
             'id': page_obj[i].id,
             "description": page_obj[i].description,
             "title": page_obj[i].title,
@@ -59,7 +59,7 @@ def quiz_view(request):
     context={
         'quiz':{
             "picture": post.icon,
-            "rating": post.rating,
+            "rating": post.views,
             "num_complition": post.views,
             "description": post.description,
             "title": post.title,

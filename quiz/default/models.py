@@ -33,7 +33,6 @@ class Quiz(models.Model):
     date_of_create = models.DateField(auto_now=True)
     user_id = models.ForeignKey(User, on_delete=models.RESTRICT)
     views = models.IntegerField()
-    rating = models.FloatField()
     icon = models.ImageField()
 
 #Класс описывает структуру отношения БД в которой храняться данные связей вопросов и викторин. 

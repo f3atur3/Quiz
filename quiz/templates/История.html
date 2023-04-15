@@ -130,7 +130,7 @@
                         </tr>
                     </thead>
                     <tbody style="table-layout: fixed" class="u-table-body">
-                        {% for quiz in user.complited_quiz %}
+                        {% for quiz in complited_quiz %}
                         <tr style="height: auto">
                             <td style="word-wrap:break-word; max-width:250px" class="u-border-1 u-border-grey-30 u-table-cell">{{quiz.title}}</td>
                             <td style="word-wrap:break-word; max-width:250px" class="u-border-1 u-border-grey-30 u-table-cell">{{quiz.date}}</td>
@@ -139,11 +139,22 @@
                         {% endfor %}
                     </tbody>
                 </table>
-            </div><span class="u-file-icon u-icon u-icon-1"><img src="{% static 'images/7893857.png' %}" alt=""></span>
-            <div class="u-rotation-parent u-rotation-parent-1">
-                <span class="u-file-icon u-icon u-rotate-180 u-icon-2"><img src="{% static 'images/7893857.png' %}" alt=""></span>
             </div>
-            <p class="u-align-center u-text u-text-1">1 страница</p>
+            <div class="u-align-center u-form-group u-form-submit" style="width: 100%; vertical-align:central;">
+                <p style='display: inline-block; position:right; vertical-align:central;'>
+                    {% if complited_quiz.1.page != 1 and complited_quiz.1.page > 0 %}
+                    <a href="history?page={{complited_quiz.1.page | add:-1 }}">
+                        <span class="u-file-icon u-icon u-icon-1" type="submit" style='display: inline-block;'><img src="{% static 'images/7893857.png' %}" style='transform: rotate(180deg)' alt=""></span>
+                    </a>
+                    {% endif %}
+                    {{complited_quiz.1.page}} страница
+                    {% if complited_quiz.1.page != complited_quiz.1.count_page and complited_quiz.1.page > 0 %}
+                    <a href="history?page={{complited_quiz.1.page  | add:1 }}">
+                        <span class="u-file-icon u-icon u-icon-1" type="submit" style='display: inline-block;'><img src="{% static 'images/7893857.png' %}" alt=""></span>
+                    </a>
+                </p>
+    {% endif %}
+</div>
         </div>
     </section>
 
