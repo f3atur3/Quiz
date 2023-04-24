@@ -43,7 +43,6 @@ def all_quiz(request):
             'count_page':paginator.num_pages,
             } for i in range(len(page_obj))]
     }
-    print(context) 
     return render(request, "Все_викторины.html", context=context)
 
 #Функция генерирует шаблон страницы МЫ

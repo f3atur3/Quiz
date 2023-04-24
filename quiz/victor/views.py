@@ -19,11 +19,15 @@ def results(request):
         current_quiz.save()
     post = QIQ.objects.filter(quiz=id).order_by('question')
     questions = [post[i].question for i in range(len(post))]
-    results = [str(i.right_answer) == str(j) for i, j in zip(questions, dictan[request.user.id][id])]
+    # results_ = [str(i.right_answer) == str(j) for i, j in zip(questions, dictan[request.user.id][id])]
+    results_ = list()
+    for i, q in enumerate(questions):
+        ans = dictan[request.user.id][id].get(i+1, None)
+        results_.append(int(ans is not None))
     dictan[request.user.id].pop(id, None)
     context = {
-        'correct_answ': sum(results),
-        'all_answ': len(results)
+        'correct_answ': sum(results_),
+        'all_answ': len(results_)
     }
     History.objects.create(
         user=User.objects.get(id=request.user.id),
