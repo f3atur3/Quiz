@@ -13,10 +13,10 @@ class Question(models.Model):
 
     
     ques = models.CharField(max_length=255)
-    answer1 = models.CharField(max_length=30)
-    answer2 = models.CharField(max_length=30)
-    answer3 = models.CharField(max_length=30)
-    answer4 = models.CharField(max_length=30)
+    answer1 = models.CharField(max_length=30) 
+    answer2 = models.CharField(max_length=30,blank=True,null=True)
+    answer3 = models.CharField(max_length=30,blank=True,null=True)
+    answer4 = models.CharField(max_length=30,blank=True,null=True)
     type_answer = models.CharField(
         max_length=30,
         choices=TypesAnswers.choices,
