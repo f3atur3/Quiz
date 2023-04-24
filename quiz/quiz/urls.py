@@ -3,6 +3,7 @@ from django.urls import path
 from default.views import *
 from account.views import *
 from victor.views import *
+from create.views import *
 
 #Сопоставление ссылкам их обработчиков
 urlpatterns = [
@@ -17,5 +18,6 @@ urlpatterns = [
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('cabinet', personal_account),
     path('history', personal_history),
-    path('result', results, name='res')
+    path('result', results, name='res'),
+    path('create', create_victor)
 ]

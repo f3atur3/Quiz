@@ -54,6 +54,8 @@ def question(request):
         if int(page_number) == int(paginator.num_pages):
             print('redirect')
             return redirect('{}?{}'.format(reverse(results), urlencode({'id':id})))
+        elif int(page_number) < int(paginator.num_pages):
+            return redirect('{}?{}'.format(reverse(question), urlencode({'id':id,'page':int(page_number)+1})))
     try:
        last_anser=dictan[request.user.id][id].get(page_number,1)
     except:

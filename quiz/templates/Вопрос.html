@@ -159,19 +159,13 @@
                     <div>
                         <div class="u-align-right u-form-group u-form-submit" style='width:100%'>
                             {% if quiz.question.num != 1 %}
-                            <a href="/q?id={{quiz.id}}&page={{ quiz.question.num | add:-1 }}">
-                                <span class="u-file-icon u-icon u-icon-1 u-align-center" type="submit" style='display: inline-block' ><img src="{% static 'images/271226.png' %}" style='transform: rotate(180deg)'  alt=""></span>
-                            </a>
+                                <button type="button" onclick="location.href='/q?id={{quiz.id}}&page={{ quiz.question.num | add:-1 }}'" style='display: inline-block; vertical-align: middle; background-color: transparent; border: none;' ><img src="{% static 'images/271226.png' %}" style="height: 35px; width: auto; transform: rotate(180deg);" alt=""></button>
                             {% endif %}
                             {% if quiz.question.num == quiz.question.question_count %}
-                            <input onclick="document.location = 'result?id={{quiz.id}}'" type="submit" value="Результат">
+                            <input onclick="document.location = 'result?id={{quiz.id}}'" type="submit" value="Результат" class="u-active-custom-color-2 u-border-2 u-border-active-custom-color-2 u-border-hover-custom-color-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-hover-custom-color-1 u-palette-1-base u-radius-50 u-block-c9b3-101">
                             {% else %}
-                            <a href="/q?id={{quiz.id}}&page={{ quiz.question.num | add:1 }}" >
-                                <span style='display: inline-block' type="submit" class="u-file-icon u-icon u-text-black u-icon-1" style="vertical-align: middle"><img src="{% static 'images/271226.png' %}" alt=""></span>
-                            </a>
-                            <input type="submit" value="submit" class="u-form-control">
+                                <button onclick="location.href='/q?id={{quiz.id}}&page={{ quiz.question.num | add:1 }}'" style='display: inline-block; vertical-align: middle; background-color: transparent; border: none; ' type="submit"><img src="{% static 'images/271226.png' %}" style="height: 35px; width:auto" alt=""></button>
                             {% endif %}
-
                         </div>
                     </div>
                 </form>
