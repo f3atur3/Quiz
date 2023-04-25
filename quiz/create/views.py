@@ -1,10 +1,9 @@
 from collections import defaultdict
-from datetime import datetime
-from time import sleep
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.urls import reverse
 from default.models import Question, Quiz, QIQ
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 
 
@@ -12,9 +11,10 @@ from django.views.decorators.cache import never_cache
 quest = defaultdict(list)
 
 
+@never_cache
+@login_required(login_url='/login/')
 def create_victor(request):
     if request.method == "GET":
-        sleep(0.5)
         id = request.GET.get("id", None)
         if id is not None and len(quest[request.user.id]) > int(id):
             print("ЧИСЛО "+id)
@@ -26,15 +26,18 @@ def create_victor(request):
         return render(request, "Creation.html", context)
     else:
         print(request.POST)
-        quiz= Quiz(q_count=len(quest[request.user.id]),title=request.POST["text"],description=request.POST["text-2"],user_id=request.user,views=0)
+        quiz = Quiz(q_count=len(quest[request.user.id]), title=request.POST["text"],
+                    description=request.POST["text-2"], user_id=request.user, views=0)
         quiz.save()
         for q in quest[request.user.id]:
             q.save()
-            QIQ(question=q,quiz=quiz).save()
+            QIQ(question=q, quiz=quiz).save()
         quest[request.user.id].clear()
-        return HttpResponse(302)
+        return redirect(reverse('home'))
 
 
+@never_cache
+@login_required(login_url='/login/')
 def create_question_tf(request):
     if request.method == "GET":
         return render(request, "Создание_вопроса_TF.html", )
@@ -43,9 +46,11 @@ def create_question_tf(request):
         q = Question(ques=request.POST["text"], answer1="true", answer2="false",
                      type_answer="True/False", right_answer=request.POST["radiobutton"])
         quest[request.user.id].append(q)
-        return HttpResponse(302)
+        return HttpResponse(status=302)
 
 
+@never_cache
+@login_required(login_url='/login/')
 def create_question_4(request):
     if request.method == "GET":
         return render(request, "Создание_вопроса_4_ответа.html", )
@@ -59,9 +64,11 @@ def create_question_4(request):
                      type_answer="radio",
                      right_answer=request.POST["number"])
         quest[request.user.id].append(q)
-        return HttpResponse(302)
+        return HttpResponse(status=302)
 
 
+@never_cache
+@login_required(login_url='/login/')
 def create_question_open(request):
     if request.method == "GET":
         return render(request, "Создание_вопроса_открытый_ответ.html", )
@@ -70,4 +77,4 @@ def create_question_open(request):
         q = Question(ques=request.POST["text"], answer1=request.POST["text-1"],
                      type_answer="Вопрос с открытым ответом", right_answer="1")
         quest[request.user.id].append(q)
-        return HttpResponse(302)
+        return HttpResponse(status=302)

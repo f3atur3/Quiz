@@ -119,7 +119,7 @@
     <section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-fdca">
         <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-sheet-1">
             <div class="u-form u-palette-1-base u-form-1">
-                <form  class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form" id="form-1310" method='POST'>
+                <form onsubmit="setTimeout(function() { location.href='/create'; }, 500); return false;" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form" id="form-1310" method='POST'>
                     {% csrf_token %} 
                     <div class="u-form-group u-form-name u-label-top">
                         <label for="name-6797" class="u-label">Вопрос</label>
@@ -135,7 +135,8 @@
                             <label class="u-field-label u-text-active-palette-1-base" for="field-4bf1" style="font-weight: 700;">False</label>
                         </div>
                     </div>
-                    <input type="submit" value="Сохранить" onclick="location.href='/create'" > 
+                    {% comment %} <input type="submit" value="Сохранить" onclick="location.href='/create'" > {% endcomment %}
+                    <input type="submit" value="Сохранить">
                     </div>
                  </form>
             </div>
