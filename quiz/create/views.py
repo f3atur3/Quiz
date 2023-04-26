@@ -20,7 +20,8 @@ def create_victor(request):
             print("ЧИСЛО "+id)
             quest[request.user.id].pop(int(id))
         context = {
-            "quiz_questions": [{"id": id, "text": question.ques} for id, question in enumerate(quest.get(request.user.id, []))]
+            "quiz_questions": [{"id": id, "text": question.ques} for id, question in enumerate(quest.get(request.user.id, []))],
+            "count_question": len(quest.get(request.user.id, []))
         }
         print(quest)
         return render(request, "Creation.html", context)
@@ -75,6 +76,6 @@ def create_question_open(request):
     elif request.method == "POST":
         quest[request.user.id] = quest.get(request.user.id, [])
         q = Question(ques=request.POST["text"], answer1=request.POST["text-1"],
-                     type_answer="Вопрос с открытым ответом", right_answer="1")
+                     type_answer="Вопрос с открытым ответом", right_answer=request.POST["text-1"])
         quest[request.user.id].append(q)
         return HttpResponse(status=302)

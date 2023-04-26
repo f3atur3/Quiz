@@ -124,7 +124,7 @@
                     <div class="u-form-group u-form-radiobutton u-form-group-1">
                         <label class="u-label u-text-grey-70 u-label-1">Варианты ответа</label>
                         <div class="u-form-radio-button-wrapper">
-                    <form method='POST'>
+                    <form method='POST' {% if quiz.question.num == quiz.question.question_count %} {% endif %}>
                         {% csrf_token %} 
                             {% if quiz.question.type == "radio" %}
                             {% for anser in quiz.question.answr %}
@@ -146,11 +146,11 @@
                             </div>
                             {% elif quiz.question.type == "True/False" %}
                             <div class="u-input-row">
-                                <input id="field-4bf3" type="radio" name="radiobutton" value=true class="u-field-input" checked="checked" data-calc="">
+                                <input id="field-4bf3" type="radio" name="radiobutton" value="1" class="u-field-input" checked="checked" data-calc="">
                                 <label class="u-field-label u-text-black" for="field-4bf3" style="font-weight: 700;">True</label>
                             </div>
                             <div class="u-input-row">
-                                <input id="field-4bf3" type="radio" name="radiobutton" value=false class="u-field-input" data-calc="">
+                                <input id="field-4bf3" type="radio" name="radiobutton" value="2" class="u-field-input" data-calc="">
                                 <label class="u-field-label u-text-black" for="field-4bf3" style="font-weight: 700;">False</label>
                             </div>
                             {% endif %}
@@ -162,7 +162,7 @@
                                 <button type="button" onclick="location.href='/q?id={{quiz.id}}&page={{ quiz.question.num | add:-1 }}'" style='display: inline-block; vertical-align: middle; background-color: transparent; border: none;' ><img src="{% static 'images/271226.png' %}" style="height: 35px; width: auto; transform: rotate(180deg);" alt=""></button>
                             {% endif %}
                             {% if quiz.question.num == quiz.question.question_count %}
-                            <input onclick="document.location = 'result?id={{quiz.id}}'" type="submit" value="Результат" class="u-active-custom-color-2 u-border-2 u-border-active-custom-color-2 u-border-hover-custom-color-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-hover-custom-color-1 u-palette-1-base u-radius-50 u-block-c9b3-101">
+                            <input type="submit" value="Результат">
                             {% else %}
                                 <button onclick="location.href='/q?id={{quiz.id}}&page={{ quiz.question.num | add:1 }}'" style='display: inline-block; vertical-align: middle; background-color: transparent; border: none; ' type="submit"><img src="{% static 'images/271226.png' %}" style="height: 35px; width:auto" alt=""></button>
                             {% endif %}
