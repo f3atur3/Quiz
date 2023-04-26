@@ -18,6 +18,7 @@ class CustomLogoutView(LogoutView):
 
 #Класс обработчика входа в систему
 class CustomLoginView(LoginView):
+
     template_name = 'registration/login.html'
 
     #Праверка корректности данных в форме 
@@ -27,7 +28,8 @@ class CustomLoginView(LoginView):
     #Отправка url
     def get_success_url(self):
         return self.request.GET.get('next', '/')
-    
+ 
+
 #Обработчик регистрации пользователя
 def registration_view(request):
     if request.method == 'POST':

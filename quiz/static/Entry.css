@@ -1,5 +1,6 @@
- .u-section-1 {
-  background-image: linear-gradient(#4551dd, #858e99);
+.u-section-1 {
+    background-image: linear-gradient(#4551dd, #858e99);
+    min-height: 100vh;
 }
 
 .u-section-1 .u-sheet-1 {
