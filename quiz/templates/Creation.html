@@ -117,7 +117,7 @@
     <section class="u-clearfix u-gradient u-section-1" id="sec-c321">
             <div class="u-clearfix u-sheet u-block-c9b3-88">
                 <div class="u-form u-block-c9b3-90">
-                    <form method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form" data-services="a6248bf95d1bb5bf83cbd90a97d4ff46">
+                    <form method="POST" onsubmit="setTimeout(function() { location.href='/cabinet'; }, 0); return false;" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form" data-services="a6248bf95d1bb5bf83cbd90a97d4ff46">
                         {% csrf_token %}
                         <input type="hidden" id="siteId" name="siteId" value="4586469">
                         <input type="hidden" id="pageId" name="pageId" value="4586478">
@@ -133,8 +133,8 @@
                             <label for="text-738c" class="u-label">Картинка</label>
                             <input type="file" placeholder="Загрузите картинку" id="image" name="image" accept="image/*" class="u-input u-input-rectangle u-block-c9b3-110">
                         </div>
-                        <div class="u-align-center u-form-group u-form-submit u-label-top u-block-c9b3-100">
-                            <input onclick="document.location = 'cabinet'" type="submit" value="Сохранить" >
+                        <div class="u-align-center u-form-group u-form-submit u-label-top">
+                            <input type="submit" value="Сохранить" style="border-radius: 50px; background: linear-gradient(#30B7F0,#3063F0); box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); border: none; height: 40px; color:aliceblue" >
                         </div>
                     </form>
                 </div>
@@ -149,13 +149,14 @@
                         </colgroup>
                         <tbody class="u-table-body u-block-c9b3-125" id="list_question">
                             {% for question in quiz_questions %}
-                            <tr style="height: 30px;" >
+                            <tr style="height: 30px;">
                                 <td class="u-table-cell u-block-c9b3-126" style="font-weight: bold;">{{question.text}}</td>
                                 <td class="u-table-cell u-block-c9b3-127 u-align-center" style="font-weight: bold;"></td>
-                                <td class="u-table-cell u-block-c9b3-140 u-align-center" id="del_que" style="font-weight: bold;"><a href="create?id={{question.id}}">Удалить</a></td>
+                                <td class="u-table-cell u-block-c9b3-140 u-align-center" id="del_que" style="font-weight: bold; color:black"><a href="create?id={{question.id}}" style="color:black">Удалить</a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
+                        {% if count_question < 20 %}
                         <tfoot class="u-table-footer u-block-c9b3-135">
                             <tr style="height: 123px;">
                                 <td class="u-align-right u-table-cell u-block-c9b3-142" style="font-weight: bold;" id="add_true_false"><a href='create_question_tf' style="color: #000000;">Добавить<br>true/false</a></td>
@@ -164,6 +165,7 @@
                             </tr>
 
                         </tfoot>
+                        {% endif %}
                     </table>
                             <div class="u-list u-block-c9b3-89"><div class="u-repeater u-block-c9b3-111"></div></div>
                                 </div >
