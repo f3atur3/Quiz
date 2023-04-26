@@ -20,7 +20,8 @@ def create_victor(request):
             print("ЧИСЛО "+id)
             quest[request.user.id].pop(int(id))
         context = {
-            "quiz_questions": [{"id": id, "text": question.ques} for id, question in enumerate(quest.get(request.user.id, []))]
+            "quiz_questions": [{"id": id, "text": question.ques} for id, question in enumerate(quest.get(request.user.id, []))],
+            "count_question": len(quest.get(request.user.id, []))
         }
         print(quest)
         return render(request, "Creation.html", context)
