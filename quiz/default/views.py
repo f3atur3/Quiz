@@ -58,7 +58,7 @@ def quiz_view(request):
     context={
         'quiz':{
             "picture": post.icon,
-            "rating": post.views,
+            "rating": post.rating,
             "num_complition": post.views,
             "description": post.description,
             "title": post.title,

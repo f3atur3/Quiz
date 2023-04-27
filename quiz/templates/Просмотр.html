@@ -145,7 +145,9 @@
                 {{quiz.description}}<br>
             </p>
             <p class="u-text u-text-body-alt-color u-text-default-xl u-text-3">
-                <span class="u-file-icon u-icon u-text-white u-icon-1"><img src="{% static 'images/535193-8caecf2f.png' %}" alt=""></span>&nbsp;Количество просмотров: {{quiz.num_complition}}
+                &nbsp;Количество просмотров:  {{quiz.num_complition}} <span class="u-file-icon u-icon u-text-white u-icon-1"><img src="{% static 'images/535193-8caecf2f.png' %}" alt=""></span> &#9; 
+                <br>
+                &nbsp;Рейтинг: {{quiz.rating}}⭐
             </p>
             <a href="/q?id={{quiz.id}}&page=1" class="u-border-none u-btn u-btn-round u-button-style u-gradient u-none u-radius-50 u-text-body-alt-color u-btn-1">Начать</a>
         </div>
