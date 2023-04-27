@@ -33,7 +33,7 @@ class Quiz(models.Model):
     date_of_create = models.DateField(auto_now=True)
     user_id = models.ForeignKey(User, on_delete=models.RESTRICT)
     views = models.IntegerField()
-    icon = models.ImageField()
+    icon = models.ImageField(upload_to='static/images')
     count_of_rating=models.IntegerField()
     rating=models.FloatField()
 

@@ -27,7 +27,7 @@ def create_victor(request):
         return render(request, "Creation.html", context)
     else:
         print(request.POST)
-        quiz = Quiz(q_count=len(quest[request.user.id]), title=request.POST["text"],
+        quiz = Quiz(q_count=len(quest[request.user.id]), title=request.POST["text"], count_of_rating=0, rating=0,
                     description=request.POST["text-2"], user_id=request.user, views=0)
         quiz.save()
         for q in quest[request.user.id]:
