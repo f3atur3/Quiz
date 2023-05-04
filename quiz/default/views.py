@@ -34,7 +34,7 @@ def all_quiz(request):
     context = {
         'quizzes': [ {
             'picture': page_obj[i].icon,
-            'rating': page_obj[i].views,
+            'rating': page_obj[i].rating,
             'id': page_obj[i].id,
             "description": page_obj[i].description,
             "title": page_obj[i].title,

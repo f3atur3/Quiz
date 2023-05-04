@@ -46,11 +46,20 @@ def registration_view(request):
 @login_required(login_url='/login/')
 def personal_account(request):
     quizes = History.objects.filter(user=request.user)
+    if request.method=='POST':
+        banan=User.objects.get(id=request.user.id)
+        banan.last_name=request.POST["text"]
+        banan.first_name=request.POST["text-1"]
+        banan.email=request.POST["email"]
+        banan.save()
     context = {
         'user': {
             'picture': 'pinguin.png',
             'cnt_complited_quiz': len(quizes.distinct()),
-            'perсent_crrct_answ': round(sum([q.result * 100 for q in quizes]) / max(1, len(quizes)),2)
+            'perсent_crrct_answ': round(sum([q.result * 100 for q in quizes]) / max(1, len(quizes)),2),
+            'surname': request.user.last_name,
+            'name':request.user.first_name,
+            'email':request.user.email
         }
     }
     return render(request, 'Кабинет.html', context=context)

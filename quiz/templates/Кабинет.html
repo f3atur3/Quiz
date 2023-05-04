@@ -127,7 +127,8 @@
         <div class="u-clearfix u-sheet u-sheet-1">
             <img class="u-image u-image-circle u-image-1" src={% static user.picture %} alt="" data-image-width="900" data-image-height="900">
             <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
-                <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form">
+                <form onsubmit="location.reload();" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form">
+                    {% csrf_token %}
                     <div class="u-form-group u-form-name u-label-top">
                         <label for="name-6797" class="u-label u-label-1">Фамилия</label>
                         <input type="text" placeholder="Введите свою фамилию" id="name-6797" name="text" class="u-input u-input-rectangle" required="" value="{{ user.surname }}">
@@ -143,12 +144,10 @@
                     <div class="u-align-center u-form-group u-form-submit u-label-top">
                          <input type="submit" value="Сохранить" style="border-radius: 50px; background: linear-gradient(#30B7F0,#3063F0); box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); border: none; height: 40px; color:aliceblue" >
                     </div>
-                    <input type="hidden" value="" name="recaptchaResponse">
-                    <input type="hidden" name="formServices" value="e785f73b84c886b747fb1e25ed5e78a9">
                 </form>
             </div>
         <p class="u-align-left u-text u-text-body-alt-color u-text-1" style="margin-top: auto;">
-            Пройдено викторин: {{user.cnt_complited_quiz}}<br>Процент пра<span style="font-weight: 700;"></span>вильных ответов: {{user.perсent_crrct_answ}}%
+            Пройдено викторин: {{user.cnt_complited_quiz}}<br>Процент правильных ответов: {{user.perсent_crrct_answ}}%
         </p>
         <a href="history" class="u-border-none u-btn u-btn-round u-button-style u-gradient u-none u-radius-23 u-btn-2">История</a>
 
