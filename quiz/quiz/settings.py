@@ -26,10 +26,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account',
-    'create',
-    'victor',
-    'default'
+    'account.apps.AccountConfig',
+    'create.apps.CreateConfig',
+    'victor.apps.VictorConfig',
+    'default.apps.DefaultConfig'
 ]
 
 MIDDLEWARE = [
