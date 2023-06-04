@@ -15,8 +15,8 @@ SECRET_KEY = 'django-insecure-+te+da8f7!0p&*ftwx51fck2b%83r%o@3hd0+8h^g&po9f1wdf
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+APPEND_SLASH = False
+LOGIN_URL = 'login'
 # Application definition
 
 INSTALLED_APPS = [
@@ -120,3 +120,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')

@@ -5,6 +5,7 @@ from default.models import Question, Quiz, QIQ
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
+from django.core.files.storage import FileSystemStorage
 
 
 # Create your views here.
@@ -17,18 +18,24 @@ def create_victor(request):
     if request.method == "GET":
         id = request.GET.get("id", None)
         if id is not None and len(quest[request.user.id]) > int(id):
-            print("ЧИСЛО "+id)
             quest[request.user.id].pop(int(id))
         context = {
             "quiz_questions": [{"id": id, "text": question.ques} for id, question in enumerate(quest.get(request.user.id, []))],
             "count_question": len(quest.get(request.user.id, []))
         }
-        print(quest)
         return render(request, "Creation.html", context)
     else:
         print(request.POST)
-        quiz = Quiz(q_count=len(quest[request.user.id]), title=request.POST["text"],
-                    description=request.POST["text-2"], user_id=request.user, views=0)
+        print(type(request.FILES['image']))
+        print(12321214124214214)
+        image_file = request.FILES['image']
+        # сохранение файла на диске
+        fs = FileSystemStorage()
+        filename = fs.save(image_file.name, image_file)
+        # получение URL файла после сохранения
+        uploaded_file_url = fs.url(filename)
+        quiz = Quiz(q_count=len(quest[request.user.id]), title=request.POST["text"], count_of_rating=0, rating=0,
+                    description=request.POST["text-2"], user_id=request.user, views=0, icon=uploaded_file_url)
         quiz.save()
         for q in quest[request.user.id]:
             q.save()

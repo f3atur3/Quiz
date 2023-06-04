@@ -15,7 +15,7 @@ urlpatterns = [
     path('quiz', quiz_view),
     path('q', question),
     path('login/', CustomLoginView.as_view(), name='login'),
-    path('logout/', CustomLogoutView.as_view(), name='logout'),
+    path('logout', CustomLogoutView.as_view(), name='logout'),
     path('cabinet', personal_account),
     path('history', personal_history),
     path('result', results, name='res'),

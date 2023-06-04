@@ -7,25 +7,34 @@
     <meta name="description" content="">
     <title>Главная</title>
     <link rel="stylesheet" href="{% static 'nicepage.css' %}" media="screen">
-<link rel="stylesheet" href="{% static 'Main.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'Main.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'jquery-1.9.1.min.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 5.7.12, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
-    
-    <script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": "",
-		"url": "/",
-		"logo": "{% static 'images/image-1.png' %}"
-}</script>
+
+
+    <script type="application/ld+json">
+        {
+                "@context": "http://schema.org",
+                "@type": "Organization",
+                "name": "",
+                "url": "/",
+                "logo": "{% static 'images/image-1.png' %}"
+        }</script>
     <meta name="theme-color" content="#4551dd">
     <meta property="og:title" content="Главная">
     <meta property="og:type" content="website">
     <link rel="canonical" href="/">
-  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+    <meta data-intl-tel-input-cdn-path="intlTelInput/">
+    <style>
+        section {
+            min-height: 100vh;
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
   <body class="u-body u-xl-mode" data-lang="ru"><header class="u-clearfix u-gradient u-header u-header" id="sec-fe69"><div class="u-clearfix u-sheet u-valign-middle-xl u-sheet-1">
         <a class="u-image u-logo u-image-1" data-image-width="509" data-image-height="505">
           <img src="{% static 'images/image-1.png' %}" class="u-logo-image u-logo-image-1">
@@ -64,7 +73,7 @@
                   </li>
                   {% else %}
                   <li class="u-nav-item">
-                      <a class="u-button-style u-nav-link u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-5-light-1" href="login" data-lang-ru="{&quot;content&quot;:&quot;Вход&quot;,&quot;href&quot;:&quot;login&quot;}" style="padding: 10px 8px;">Вход</a>
+                      <a class="u-button-style u-nav-link u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-5-light-1" href="login/" data-lang-ru="{&quot;content&quot;:&quot;Вход&quot;,&quot;href&quot;:&quot;login&quot;}" style="padding: 10px 8px;">Вход</a>
                   </li>
                   <li class="u-nav-item">
                       <a class="u-button-style u-nav-link u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-5-light-1" href="registry" data-lang-ru="{&quot;content&quot;:&quot;Регистрация&quot;,&quot;href&quot;:&quot;registry&quot;}" style="padding: 10px 8px;">Регистрация</a>
@@ -100,7 +109,7 @@
                     </li>
                     {% else %}
                     <li class="u-nav-item">
-                        <a class="u-button-style u-nav-link" href="login" data-lang-ru="{&quot;content&quot;:&quot;Вход&quot;,&quot;href&quot;:&quot;login&quot;}">Вход</a>
+                        <a class="u-button-style u-nav-link" href="login/" data-lang-ru="{&quot;content&quot;:&quot;Вход&quot;,&quot;href&quot;:&quot;login&quot;}">Вход</a>
                     </li>
                     <li class="u-nav-item">
                         <a class="u-button-style u-nav-link" href="registry" data-lang-ru="{&quot;content&quot;:&quot;Контакты&quot;,&quot;href&quot;:&quot;registry&quot;}">Регистрация</a>
@@ -133,7 +142,7 @@
               <img class="u-image u-image-default u-image-1" src="{% static quiz.0.picture %}" style="object-fit:contain" alt="" data-image-width="5000" data-image-height="3220">
               <p class="u-align-center u-large-text u-text u-text-variant u-text-3"> {{quiz.0.title}}</p>
               <p class="u-align-center u-hidden-xs u-small-text u-text u-text-variant u-text-4"> {{quiz.0.description}}</p>
-              <p class="u-align-center u-text u-text-5">&nbsp;{{quiz.0.rating}}</p>
+              <p class="u-align-center u-text u-text-5">&nbsp;⭐ {{quiz.0.rating}}</p>
             </div>
           </div>
           <div class="u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-direction="">
@@ -141,7 +150,7 @@
               <img class="u-image u-image-default u-image-2" src="{% static quiz.1.picture %}" style="object-fit:contain" alt="" data-image-width="5000" data-image-height="3220">
               <p class="u-align-center u-large-text u-text u-text-variant u-text-6"> {{quiz.1.title}}</p>
               <p class="u-align-center u-hidden-xs u-small-text u-text u-text-variant u-text-7"> {{quiz.1.description}}</p>
-              <p class="u-align-center u-text u-text-8">&nbsp;​{{quiz.1.rating}}</p>
+              <p class="u-align-center u-text u-text-8">&nbsp;⭐ ​{{quiz.1.rating}}</p>
             </div>
           </div>
           <div class="u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-3" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-direction="">
@@ -149,7 +158,7 @@
               <img class="u-image u-image-default u-image-3" src="{% static quiz.2.picture %}" style="object-fit:contain" alt="" data-image-width="5000" data-image-height="3220">
               <p class="u-align-center u-large-text u-text u-text-variant u-text-9"> {{quiz.2.title}}</p>
               <p class="u-align-center u-hidden-xs u-small-text u-text u-text-variant u-text-10"> {{quiz.2.description}}</p>
-              <p class="u-align-center u-text u-text-11">&nbsp;{{quiz.2.rating}}</p>
+              <p class="u-align-center u-text u-text-11">&nbsp;⭐ {{quiz.2.rating}}</p>
             </div>
           </div>
           <div class="u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-4" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-direction="">
@@ -157,7 +166,8 @@
               <img class="u-image u-image-default u-image-4" src="{% static quiz.3.picture %}" style="object-fit:contain" alt="" data-image-width="5000" data-image-height="3220">
               <p class="u-align-center u-large-text u-text u-text-variant u-text-12"> {{quiz.3.title}}</p>
               <p class="u-align-center u-hidden-xs u-small-text u-text u-text-variant u-text-13"> {{quiz.3.description}}</p>
-              <p class="u-align-center u-text u-text-14">&nbsp;{{quiz.3.rating}}
+              <p class="u-align-center u-text u-text-14">
+                  &nbsp;⭐ {{quiz.3.rating}}
               </p>
             </div>
           </div>
