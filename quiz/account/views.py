@@ -48,7 +48,7 @@ def personal_account(request):
         'user': {
             'picture': 'pinguin.png',
             'cnt_complited_quiz': len(quizes.distinct()),
-            'perсent_crrct_answ': sum([q.result * 100 for q in quizes]) / max(1, len(quizes))
+            'perсent_crrct_answ': round(sum([q.result * 100 for q in quizes]) / max(1, len(quizes)),2)
         }
     }
     return render(request, 'Кабинет.html', context=context)
@@ -56,7 +56,7 @@ def personal_account(request):
 #Обработчик Персональной страницы пользователя
 @login_required(login_url='/login/')
 def personal_history(request):
-    quizes = History.objects.filter(user=request.user.id)
+    quizes = History.objects.filter(user=request.user.id).order_by('-date')
     per_page = 10
     paginator = Paginator(quizes, per_page)
     page_number = request.GET.get('page', 1)
@@ -66,7 +66,7 @@ def personal_history(request):
             {
                 'title': page_obj[i].quiz.title,
                 'date': page_obj[i].date,
-                'result': page_obj[i].result,
+                'result': round(page_obj[i].result*100,2),
                 'count_page': int(paginator.num_pages),
                 'page': int(page_number)
             } for i in range(len(page_obj))

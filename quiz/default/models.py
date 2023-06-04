@@ -34,6 +34,8 @@ class Quiz(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.RESTRICT)
     views = models.IntegerField()
     icon = models.ImageField()
+    count_of_rating=models.IntegerField()
+    rating=models.FloatField()
 
 #Класс описывает структуру отношения БД в которой храняться данные связей вопросов и викторин. 
 

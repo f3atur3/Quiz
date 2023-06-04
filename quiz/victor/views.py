@@ -13,17 +13,27 @@ dictan=defaultdict(dict)
 @login_required(login_url='/login/')
 def results(request):
     id = request.GET.get('id')
+    current_quiz = Quiz.objects.get(id=id)
     if request.method == 'POST':
-        current_quiz = Quiz.objects.get(id=id)
-        current_quiz.views += 1
+        current_quiz.rating=current_quiz.rating*current_quiz.count_of_rating
+        current_quiz.count_of_rating += 1
+        current_quiz.rating=(current_quiz.rating+int(request.POST.get("number",1)))/current_quiz.count_of_rating
         current_quiz.save()
+        return redirect('home')
+    current_quiz.views += 1
+    current_quiz.save()
     post = QIQ.objects.filter(quiz=id).order_by('question')
     questions = [post[i].question for i in range(len(post))]
     # results_ = [str(i.right_answer) == str(j) for i, j in zip(questions, dictan[request.user.id][id])]
     results_ = list()
+    print(dictan[request.user.id])
     for i, q in enumerate(questions):
-        ans = dictan[request.user.id][id].get(i+1, None)
-        results_.append(int(ans is not None))
+        ans = dictan[request.user.id][id].get(str(i+1), None)
+        if ans is None:
+            results_.append(0)
+        else:
+            print(q.right_answer+"   "+ans)
+            results_.append(q.right_answer==ans)
     dictan[request.user.id].pop(id, None)
     context = {
         'correct_answ': sum(results_),
@@ -48,11 +58,17 @@ def question(request):
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
     if request.method == 'POST':
-        dictan[request.user.id][id] = dictan[request.user.id].get(id,{}) 
-        dictan[request.user.id][id].update({page_number:request.POST['radiobutton']})
-        print(page_number, paginator.num_pages)
+        print(page_number)
+        if page_obj[0].type_answer=="radio":
+            dictan[request.user.id][id] = dictan[request.user.id].get(id,{}) 
+            dictan[request.user.id][id].update({page_number:request.POST['radiobutton']})
+        elif page_obj[0].type_answer=="True/False":
+            dictan[request.user.id][id] = dictan[request.user.id].get(id,{}) 
+            dictan[request.user.id][id].update({page_number:request.POST['radiobutton']})
+        elif page_obj[0].type_answer=="Вопрос с открытым ответом":
+            dictan[request.user.id][id] = dictan[request.user.id].get(id,{}) 
+            dictan[request.user.id][id].update({page_number:request.POST['text']})    
         if int(page_number) == int(paginator.num_pages):
-            print('redirect')
             return redirect('{}?{}'.format(reverse(results), urlencode({'id':id})))
         elif int(page_number) < int(paginator.num_pages):
             return redirect('{}?{}'.format(reverse(question), urlencode({'id':id,'page':int(page_number)+1})))
